@@ -1,0 +1,21 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Minesweeper</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/game.js" defer></script>
+</head>
+<body>
+<div class="stats center">
+    <label for="flags-left-counter">Flags left:</label>
+    <input type="text" id="flags-left-counter" disabled value="0" data-all-flags-count="0">
+    
+    <!-- Future timer feature-->
+    <label for="elapsed-time-counter">Elapsed time:</label>
+    <input type="text" id="elapsed-time-counter" disabled value="00 : 00 : 00">
+</div>
+<div class="game-field" data-cell-width="16" data-cell-height="16">
+</div>
+</body>
+</html>

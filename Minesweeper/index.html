@@ -1,0 +1,33 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Minesweeper</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="center">
+    <h1>Welcome to Minesweeper!</h1>
+</div>
+<div class="center">
+    <form action="game.html" method="GET">
+        <div>
+            <label for="cols">Columns:</label><br>
+            <input type="number" id="cols" name="cols" value="10">
+        </div>
+        <br>
+        <div>
+            <label for="rows">Rows:</label><br>
+            <input type="number" id="rows" name="rows" value="10">
+        </div>
+        <br>
+        <div>
+            <label for="mines">Mines:</label><br>
+            <input type="number" id="mines" name="mines" value="10">
+        </div>
+        <br>
+        <input type="submit" value="Start"/>
+    </form>
+</div>
+</body>
+</html>
