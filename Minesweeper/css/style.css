@@ -1,0 +1,55 @@
+﻿.center {
+    padding: 35px 0;
+    text-align: center;
+}
+
+.game-field {
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.game-field .row {
+    height: 16px;
+    display: flex;
+}
+
+.game-field .row .field {
+    height: 16px;
+    width: 16px;
+    background: url('../img/closed-field.png');
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.game-field .row .mine {
+    height: 16px;
+    width: 16px;
+    background: url('../img/closed-field.png');
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.game-field .row .field.flagged {
+    background: url('../img/flag.png');
+}
+
+.game-field .row .field.open {
+    background: url('../img/open-field.png');
+    text-align: center;
+}
+
+.game-field .row .field.open.mine {
+    background: url('../img/mine.png');
+}
+
+#flags-left-counter{
+    text-align: center;
+}
+
+#elapsed-time-counter {
+    text-align: center;
+}
+
