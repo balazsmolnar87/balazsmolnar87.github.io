@@ -16,10 +16,22 @@
     <link href="../css/styles.css" rel="stylesheet" />
 </head>
 <body id="page-top">
-<!-- Navigation-->
 <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
     <div class="container px-4 px-lg-5">
         <a class="navbar-brand" href="../index.html">Go back</a>
+        <a class="nav-item" href="https://www.linkedin.com/in/balazsmolnar-devops/"><i class="fab fa-linkedin-in mx-2" ></i></a>
+        <a class="nav-item" href="https://github.com/balazsmolnar87"><i class="fab fa-github mx-2" ></i></a>
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            Menu
+            <i class="fas fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+                <li class="nav-item"><a class="nav-link" href="#pt1">Part 1</a></li>
+                <li class="nav-item"><a class="nav-link" href="#pt2">Part 2</a></li>
+            </ul>
+        </div>
     </div>
 </nav>
 <!-- Masthead-->
@@ -52,11 +64,10 @@
     <div class="container px-4 px-lg-5">
         <div class="row gx-4 gx-lg-5 justify-content-left">
             <div class="col-lg-8">
+                <br>
                 <h2 class="text-black-50 mb-4">Part 1</h2>
                 <h2 class="text-black-50 mb-4">Let's create a dummy python app with flask</h2>
-                <p class="text-black-50">
-                    It will provide us an endpoint to return a text saying: "Hello from flask!".
-                </p>
+                <p class="text-black-50">It will provide us an endpoint to return a text saying: "Hello from flask!".</p>
                 <h3>Create an environment</h3>
                 <p>python3 -m venv venv</p>
                 <p>I'm on Windows so</p>
@@ -72,8 +83,7 @@
                 <h3>Add a Dockerfile</h3>
                 <p>In the Dockerfile I have:</p>
                 <p>FROM python:3.8-slim<br>WORKDIR /python-docker<br>COPY . .<br>RUN pip3 install -r requirements.txt<br>
-                    CMD [ "python3", "-m" , "flask", "run", "--host=0.0.0.0"]
-                </p>
+                    CMD [ "python3", "-m" , "flask", "run", "--host=0.0.0.0"]</p>
                 <h3>Build a Docker image</h3>
                 <p>docker build . -t utamaro/flaskapp:0.1</p>
                 <h3>Tag the image and push it to Docker Hub</h3>
@@ -83,10 +93,43 @@
                 <p>docker tag f0ce34ca1b60 utamaro/flaskapp:0.1</p>
                 <p>docker push utamaro/flaskapp:0.1</p>
                 <p>Since I have Docker Desktop installed I could also click the image and select "Push to Hub"</p>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Part 1-->
+<section class="" id="pt2">
+    <div class="container px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-left">
+            <div class="col-lg-8">
+                <h2 class="text-black-50 mb-4">Part 2</h2>
+                <h2 class="text-black-50 mb-4">Let's create a dummy python app with flask</h2>
+                <p class="text-black-50">It will provide us an endpoint to return a text saying: "Hello from flask!".</p>
+                <h3>Create an environment</h3>
+                <p>python3 -m venv venv</p>
+                <p>I'm on Windows so</p>
+                <p>venv\Scripts\activate</p>
+                <h3>Install Flask</h3>
+                <p>pip install Flask</p>
+                <p>pip freeze > requirements.txt</p>
+                <h3>Let's run the flask server locally</h3>
+                <p>flask --app app run</p>
+                <p>It is running. Ctrl + left-click on the ip address or visit http://127.0.0.1:5000 in the browser</p>
+                <p>It says: Hello from flask! Perfect!</p>
+                <p>Since I have Docker installed let's make a Docker image out of this quick.</p>
+                <h3>Add a Dockerfile</h3>
+                <p>In the Dockerfile I have:</p>
+                <p>FROM python:3.8-slim<br>WORKDIR /python-docker<br>COPY . .<br>RUN pip3 install -r requirements.txt<br>
+                    CMD [ "python3", "-m" , "flask", "run", "--host=0.0.0.0"]</p>
+                <h3>Build a Docker image</h3>
+                <p>docker build . -t utamaro/flaskapp:0.1</p>
+                <h3>Tag the image and push it to Docker Hub</h3>
+                <p>Let's find out the image id</p>
                 <p>docker images</p>
-
-
-
+                <p>Tag the image</p>
+                <p>docker tag f0ce34ca1b60 utamaro/flaskapp:0.1</p>
+                <p>docker push utamaro/flaskapp:0.1</p>
+                <p>Since I have Docker Desktop installed I could also click the image and select "Push to Hub"</p>
             </div>
         </div>
     </div>
