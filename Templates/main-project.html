@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Main Project</title>
+    <link rel="icon" type="image/x-icon" href="assets/favicon.png" />
+    <!-- Font Awesome icons (free version)-->
+    <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+    <!-- Google fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="../css/styles.css" rel="stylesheet" />
+</head>
+<body id="page-top">
+<!-- Navigation-->
+<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+    <div class="container px-4 px-lg-5">
+        <a class="navbar-brand" href="../index.html">Go back</a>
+    </div>
+</nav>
+<!-- Masthead-->
+<header class="masthead main-project">
+    <div class="container px-4 px-lg-5 d-flex h-100 align-items-center justify-content-center">
+        <div class="d-flex justify-content-center">
+            <div class="text-center">
+                <h1 class="mx-auto my-0 text-uppercase">From zero<br>to hero</h1>
+                <a class="btn btn-light" href="#about">Get Started</a>
+            </div>
+        </div>
+    </div>
+</header>
+<!-- About-->
+<section class="about-section text-center" id="about">
+    <div class="container px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-lg-8">
+                <h2 class="text-white mb-4">This will be my journey where I deploy an app to the cloud.</h2>
+                <p class="text-white-50">
+                    Going step by step. From creation of a dummy application. Extending it with features and capabilities.
+                    <br>Applying different tools such as Docker, Docker Compose, Helm, Terraform, Kubernetes. We will see...
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Part 1-->
+<section class="" id="pt1">
+    <div class="container px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-left">
+            <div class="col-lg-8">
+                <h2 class="text-black-50 mb-4">Part 1</h2>
+                <h2 class="text-black-50 mb-4">Let's create a dummy python app with flask</h2>
+                <p class="text-black-50">
+                    It will provide us an endpoint to return a text saying: "Hello from flask!".
+                </p>
+                <h3>Create an environment</h3>
+                <p>python3 -m venv venv</p>
+                <p>I'm on Windows so</p>
+                <p>venv\Scripts\activate</p>
+                <h3>Install Flask</h3>
+                <p>pip install Flask</p>
+                <p>pip freeze > requirements.txt</p>
+                <h3>Let's run the flask server locally</h3>
+                <p>flask --app app run</p>
+                <p>It is running. Ctrl + left-click on the ip address or visit http://127.0.0.1:5000 in the browser</p>
+                <p>It says: Hello from flask! Perfect!</p>
+                <p>Since I have Docker installed let's make a Docker image out of this quick.</p>
+                <h3>Add a Dockerfile</h3>
+                <p>In the Dockerfile I have:</p>
+                <p>FROM python:3.8-slim<br>WORKDIR /python-docker<br>COPY . .<br>RUN pip3 install -r requirements.txt<br>
+                    CMD [ "python3", "-m" , "flask", "run", "--host=0.0.0.0"]
+                </p>
+                <h3>Build a Docker image</h3>
+                <p>docker build . -t utamaro/flaskapp:0.1</p>
+                <h3>Tag the image and push it to Docker Hub</h3>
+                <p>Let's find out the image id</p>
+                <p>docker images</p>
+                <p>Tag the image</p>
+                <p>docker tag f0ce34ca1b60 utamaro/flaskapp:0.1</p>
+                <p>docker push utamaro/flaskapp:0.1</p>
+                <p>Since I have Docker Desktop installed I could also click the image and select "Push to Hub"</p>
+                <p>docker images</p>
+
+
+
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+</html>
