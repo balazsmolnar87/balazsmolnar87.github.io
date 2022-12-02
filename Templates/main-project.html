@@ -32,6 +32,8 @@
                 <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
                 <li class="nav-item"><a class="nav-link" href="#pt1">Part 1</a></li>
                 <li class="nav-item"><a class="nav-link" href="#pt2">Part 2</a></li>
+                <li class="nav-item"><a class="nav-link" href="#pt3">Part 3</a></li>
+                <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
             </ul>
         </div>
     </div>
@@ -54,16 +56,30 @@
             <div class="col-lg-8">
                 <h2 class="text-white mb-4">This will be my journey where I deploy an app to the cloud.</h2>
                 <p class="text-white-50">
-                    Going step by step. From creation of a dummy application. Extending it with features and capabilities.
-                    <br>Applying different tools such as Docker, Docker Compose, Helm, Terraform, Kubernetes. We will see...
+                    Going step by step from the creation of a dummy application to extending it with features.
+                    Applying different tools such as Docker, Docker Compose, Helm, Terraform, Kubernetes. We will
+                    see...<br><br>Ever current code available at the following GitHub repository:<br>
+                    <a href="https://github.com/balazsmolnar87/main-project">https://github.com/balazsmolnar87/main-project</a>
                 </p>
             </div>
         </div>
     </div>
 </section>
-<br>
+<!-- Disclaimer-->
+<section class="bg-light" id="disclaimer">
+    <div class="container px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-left">
+            <div class="col-lg-8">
+                <br>
+                <h1>Disclaimer</h1>
+                <p>As of now these are just my notes. This is not a guide. I am making it public so the visitor may have a look at my
+                    progress on my pet project.</p>
+            </div>
+        </div>
+    </div>
+</section>
 <!-- Part 1-->
-<section class="" id="pt1">
+<section class="bg-light" id="pt1">
     <div class="container px-4 px-lg-5">
         <div class="row gx-4 gx-lg-5 justify-content-left">
             <div class="col-lg-8">
@@ -99,13 +115,53 @@
         </div>
     </div>
 </section>
-<!-- Part 1-->
-<section class="" id="pt2">
+<!-- Part 2-->
+<section class="bg-light" id="pt2">
     <div class="container px-4 px-lg-5">
         <div class="row gx-4 gx-lg-5 justify-content-left">
             <div class="col-lg-8">
                 <h1>Part 2</h1>
                 <h2>Let's add a WSGI server to run our application and a dedicated HTTP server / Add docker-compose</h2>
+                <p>A move towards production.</p>
+                <h3>I will use gunicorn as my WSGI</h3>
+                <p>Open requirements.txt and append the list with the latest version of gunicorn</p>
+                <p>gunicorn==20.1.0</p>
+                <p>In the flask application's Dockerfile replace the entrypoint for a gunicorn command</p>
+                <p>#CMD [ "python3", "-m" , "flask", "run", "--host=0.0.0.0"]</p>
+                <p>CMD gunicorn -w 4 -b 0.0.0.0 'app:app'</p>
+                <p>-w 4 means we will use four workers to handle the incoming requests. I bind to all external IPs on a
+                    non-privileged port using the -b 0.0.0.0 option. </p>
+                <h3>Let's add nginx as a reverse proxy</h3>
+                <p>Inside my flaskapp folder I create a folder called web, and I move all contents of the flask
+                    application to that folder. Inside flaskapp I create another folder called proxy for nginx. Inside
+                    proxy I create two files. A Dockerfile and a conf.</p>
+                <p>In Dockerfile I have</p>
+                <p>FROM nginx:1.19.2-alpine<br>COPY conf /etc/nginx/conf.d/default.conf</p>
+                <p>in conf</p>
+                <p>server { listen 80; server_name localhost; location / { proxy_pass http://web:8000; }}</p>
+                <p>Nginx will face the internet and listen on port 80 and will use proxy_pass to forward all
+                    traffic to web:8000. Where web is the name of a service defined in the docker-compose file which I
+                    will create next. Port 8000 is where gunicorn is listening.</p>
+                <h3>Create a docker-compose file to run our containers</h3>
+                <p>In the main directory I create a file called docker-compose.yml</p>
+                <p>Inside I define two services (web and proxy) and a network (flask_network).</p>
+                <p>In the terminal run</p>
+                <p>docker-compose up</p>
+                <p>Docker builds and runs our images and puts the containers in the same network for us. In the browser
+                I visit localhost. Since the default port for HTTP is 80, my request first reaches nginx which forwards
+                    it to gunicorn which serves my flask application. At last the response is visible for the main route
+                Hello from flask!</p>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Part 3-->
+<section class="bg-light" id="pt3">
+    <div class="container px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-left">
+            <div class="col-lg-8">
+                <h1>Part 3</h1>
+                <h2></h2>
                 <p>A move towards production.</p>
                 <h3>I will use gunicorn as my WSGI</h3>
                 <p>Open requirements.txt and append the list with the latest version of gunicorn</p>
@@ -168,8 +224,3 @@
 <script src="../js/scripts.js"></script>
 </body>
 </html>
-
-
-           <p>Gunicorn listens on port 8000 by default, so we need to change the conf file for nginx</p>
-                <p>Change the line to look like this</p>
-                <p>proxy_pass http://web:8000;</p>
